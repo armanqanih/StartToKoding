@@ -19,7 +19,7 @@ import org.lotka.xenonx.presentation.ui.app.HomeActivity
 import org.lotka.xenonx.presentation.ui.app.MainViewModel
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListingScreen
-import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.PlpViewModel
+import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
 import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatScreen
 
 
@@ -30,7 +30,7 @@ fun HomeApp(
     activity: HomeActivity,
     viewModel: MainViewModel,
     navController: NavHostController,
-    plpviewModel: PlpViewModel,
+    plpviewModel: ChatListViewModel,
     onNavigateToRecipeDetailScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit,

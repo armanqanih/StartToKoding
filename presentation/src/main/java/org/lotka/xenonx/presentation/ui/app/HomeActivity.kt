@@ -11,14 +11,14 @@ import androidx.navigation.compose.rememberNavController
 import com.kilid.portal.presentation.ui.app.HomeApp
 import dagger.hilt.android.AndroidEntryPoint
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
-import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.PlpViewModel
+import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
 
     private val viewModel by viewModels<MainViewModel>()
-    private val plpViewModel by viewModels<PlpViewModel>()
+    private val chatListViewModel by viewModels<ChatListViewModel>()
 
 
 //    @Inject
@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
                     activity = this@HomeActivity,
                     viewModel = viewModel,
                     navController = navController,
-                    plpviewModel = plpViewModel,
+                    plpviewModel = chatListViewModel,
                     onNavigateToRecipeDetailScreen = { navController.navigate(HomeScreensNavigation.SingleChatScreen.route) },
                     isDarkTheme = false,
                     onToggleTheme = { },

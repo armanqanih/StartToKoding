@@ -4,11 +4,9 @@ package org.lotka.xenonx.data.api
 import org.lotka.xenonx.data.model.remote.contactInfo.ContactInformationRemote
 import org.lotka.xenonx.data.model.remote.location.LocationSearchResponseRemote
 import org.lotka.xenonx.data.model.remote.pdp.PdpRemote
-import org.lotka.xenonx.data.model.remote.plp.OldPlpRemote
 import org.lotka.xenonx.data.model.remote.update.AppStatusResponseRemote
 import retrofit2.http.GET
 import retrofit2.http.Headers
-import retrofit2.http.POST
 import retrofit2.http.Query
 
 
@@ -19,11 +17,6 @@ interface HomeService {
         "LOCALE: FA",
         "Content-Type: application/json"
     )
-    @POST("listing_api/v1.1/listing/search")
-    suspend fun searchListings(
-        @Query("page") page: Int,
-        @Query("sort") sort: String = "DATE_DESC",
-    ): OldPlpRemote
 
     @GET("listing_api/v1.0/gListing/single")
     suspend fun getSingleListing(

@@ -58,7 +58,7 @@ import org.lotka.xenonx.presentation.theme.kilidWhiteTexts
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListScreenEvent
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.PAGE_SIZE
-import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.PlpViewModel
+import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
 import org.lotka.xenonx.presentation.util.UIState
 import timber.log.Timber
 import java.util.Collections
@@ -67,7 +67,7 @@ import java.util.Collections
 @Composable
 fun HomeTabRow(
     navController: NavController,
-    viewModel: PlpViewModel,
+    viewModel: ChatListViewModel,
     onNavigateToRecipeDetailScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit,
@@ -173,7 +173,7 @@ fun Pv() {
 @Composable
 fun Pv(
     navController: NavController,
-    viewModel: PlpViewModel,
+    viewModel: ChatListViewModel,
     onNavigateToRecipeDetailScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit,
@@ -371,7 +371,7 @@ fun Pv(
 @Composable
 fun All(
     navController: NavController,
-    viewModel: PlpViewModel,
+    viewModel: ChatListViewModel,
     onNavigateToRecipeDetailScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit,

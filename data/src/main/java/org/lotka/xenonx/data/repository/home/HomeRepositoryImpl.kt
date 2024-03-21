@@ -1,9 +1,10 @@
 package org.lotka.xenonx.data.repository.home
 
+import kotlinx.coroutines.flow.Flow
+import org.lotka.xenonx.domain.model.model.chat.chat_list.ChatListResponseModel
 import org.lotka.xenonx.domain.model.model.contactInfo.ContactInformation
 import org.lotka.xenonx.domain.model.model.location.LocationSearchModel
 import org.lotka.xenonx.domain.model.model.pdp.PdpModel
-import org.lotka.xenonx.domain.model.model.plp.PlpResponseModel
 import org.lotka.xenonx.domain.model.model.update.AppStatusResponse
 import org.lotka.xenonx.domain.repository.HomeRepository
 import org.lotka.xenonx.domain.util.ResultState
@@ -21,8 +22,8 @@ class HomeRepositoryImpl @Inject constructor(private val dataSource: HomeDataSou
         return dataSource.pdpDetail(id)
     }
 
-    override suspend fun pdpCountTracker(id: Int): ResultState<Boolean> {
-        return dataSource.pdpCountTracker(id)
+    override suspend fun pushNewChatListModel(id: Int): ResultState<Boolean> {
+        return dataSource.pushNewChatListModel(id)
     }
 
     override suspend fun getUserContactInfo(id: Int): ResultState<ContactInformation> {
@@ -30,10 +31,10 @@ class HomeRepositoryImpl @Inject constructor(private val dataSource: HomeDataSou
     }
 
 
-    override suspend fun loadPlpList(
+    override  fun observeUserChatList(
         page: Int,
-    ): ResultState<PlpResponseModel> {
-        return dataSource.loadPlpList(page)
+    ): Flow<ResultState<ChatListResponseModel>> {
+        return dataSource.observeUserChatList(page)
     }
 
 

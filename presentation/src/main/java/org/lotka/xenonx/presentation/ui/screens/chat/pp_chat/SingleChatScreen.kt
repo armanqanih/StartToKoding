@@ -24,14 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import org.lotka.xenonx.presentation.theme.TelegramBackGround
-import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.PlpViewModel
+import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
 
 @Composable
 fun SingleChatScreen(
     onBackPressed: () -> Unit,
     onToggleTheme: () -> Unit,
     isDarkMode: Boolean = false,
-    viewModel: PlpViewModel,
+    viewModel: ChatListViewModel,
     navController: NavController
 ) {
     val messages by viewModel.messages.collectAsState()

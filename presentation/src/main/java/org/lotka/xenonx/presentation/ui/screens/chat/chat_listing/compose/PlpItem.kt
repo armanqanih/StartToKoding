@@ -13,13 +13,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material.Card
-
 import androidx.compose.material.Icon
-
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -32,9 +28,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import org.lotka.xenonx.domain.enums.IsItemPinnedStatus
 import org.lotka.xenonx.domain.enums.UserVerificationStatus
-import org.lotka.xenonx.domain.model.model.plp.PlpItemResultModel
+import org.lotka.xenonx.domain.model.model.chat.chat_list.ChatListResponseItemModel
 import org.lotka.xenonx.presentation.R
 import org.lotka.xenonx.presentation.composables.FastImage
 import org.lotka.xenonx.presentation.theme.DescriptionTextColor
@@ -50,22 +45,24 @@ import org.lotka.xenonx.presentation.theme.kilidWhiteTexts
 @Composable
 fun PlpItem(
     isDarkTheme: Boolean,
-    item: PlpItemResultModel,
+    item: ChatListResponseItemModel,
     screen: Configuration,
     onMoreClicked: (id: Int) -> Unit,
-    onClicked: (id: Int) -> Unit,
+    onClicked: (id: String) -> Unit,
     onLadderUpClick: (id: Int) -> Unit,
     onFeaturedClick: (id: Int) -> Unit,
     index: Int,
 
     ) {
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-        val isFeatured = item.isPremiumUser
+        
+        
+        
         Card(
             modifier = Modifier
                 .padding(4.dp)
                 .background(if (isDarkTheme) kilidDarkBackgound else kilidWhiteBackgound)
-                .clickable { onClicked(item.id) },
+                .clickable { item.chatId?.let { onClicked(it) } },
 //        shape = RoundedCornerShape(8.dp) ,
 //        border = BorderStroke( 1.dp  , if (isDarkTheme) kilidDarkBorders else kilidWhiteBorders ),
             elevation = 0.dp
@@ -116,7 +113,7 @@ fun PlpItem(
                             verticalAlignment = Alignment.CenterVertically // Align items vertically in the row
                         ) {
 
-                            if (item.isLockAccount) {
+                            if (item.isLockAccount == true) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.lock_account),
                                     contentDescription = "mute",
@@ -124,17 +121,17 @@ fun PlpItem(
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
-                                    text = item.userFirstName?.chunked(10) { it.trim() }
-                                        ?.joinToString("\n") ?: "",
+                                    text = item.userNickName ?: "bug no name",
                                     style = KilidTypography.h4,
+                                    maxLines = 1,
                                     color = if (isDarkTheme) kilidDarkTexts else kilidWhiteTexts,
                                 )
 
                             } else {
                                 Text(
-                                    text = item.userFirstName?.chunked(10) { it.trim() }
-                                        ?.joinToString("\n") ?: "",
+                                    text = item.userNickName ?: "bug no name",
                                     style = KilidTypography.h4,
+                                    maxLines = 1,
                                     color = if (isDarkTheme) kilidDarkTexts else kilidWhiteTexts,
                                 )
                             }
@@ -159,13 +156,18 @@ fun PlpItem(
                                 UserVerificationStatus.ADMIN_VERIFIED -> {
                                     R.drawable.pink_verify
                                 }
+
+                                null -> {
+                                    null
+
+                                }
                             }
                             FastImage(
                                 imageUrl = painter,
                                 modifier = Modifier.size(13.dp)
                             )
                             Spacer(modifier = Modifier.width(4.dp))
-                            if (item.isSilent) {
+                            if (item.isSilent == true) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.mute_icon),
                                     contentDescription = "mute",
@@ -175,7 +177,7 @@ fun PlpItem(
                             }
                         }
 
-                        if (item.isTyping) {
+                        if (true) {
                             Text(
                                 text = "typing...",
                                 style = KilidTypography.h3,
@@ -186,7 +188,7 @@ fun PlpItem(
                         else {
                             Row() {
 
-                                if (item.isSentAPicture) {
+                                if (false) {
                                     FastImage(
                                         imageUrl = R.drawable.ic_ladder_up_yellow,
                                         modifier = Modifier.size(14.dp)
@@ -226,7 +228,7 @@ fun PlpItem(
                     Row(
 
                     ) {
-                        if (item.isUnreadMessage) {
+                        if (item.numUnreadMessage!! > 0) {
                             Icon(
                                 painter = painterResource(id = R.drawable.markread),
                                 contentDescription = null,
@@ -243,48 +245,27 @@ fun PlpItem(
 
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = item.lastMessageDate.toString(),
+                            text = item.lastMessageTime.toString(),
                             color = DescriptionTextColor,
                             style = KilidTypography.h3
                         )
 
                     }
 
+                    Box(
+                        modifier = Modifier
+                            .clip(shape = RoundedCornerShape(12.dp))
+                            .background(color = TelegrampinkColor)
+                            .size(height = 23.dp, width = 31.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = item.numUnreadMessage.toString(),
+                            color = Color.White,
+                            style = KilidTypography.h2,
+                            textAlign = TextAlign.Center,
 
-                    when (item.isItemPinned) {
-                        IsItemPinnedStatus.NONE -> {
-                            null
-                        }
-
-                        IsItemPinnedStatus.ITEMPINNED -> {
-                            Icon(
-                                painter = painterResource(id = R.drawable.pinicon),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(23.dp)
-                                    .clip(shape = CircleShape)
                             )
-                        }
-
-                        IsItemPinnedStatus.MESSAGENUMBER -> {
-                            Box(
-                                modifier = Modifier
-                                    .clip(shape = RoundedCornerShape(12.dp))
-                                    .background(color = TelegrampinkColor)
-                                    .size(height = 23.dp, width = 31.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = item.numUnreadMessage.toString(),
-                                    color = Color.White,
-                                    style = KilidTypography.h2,
-                                    textAlign = TextAlign.Center,
-
-                                    )
-                            }
-
-
-                        }
                     }
 
 
@@ -299,14 +280,10 @@ fun PlpItem(
 
     }
     Spacer(modifier = Modifier.height(11.dp))
-//        Divider(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(start = 80.dp)
-//        )
+    }
 
 
-}
+
 
 
 

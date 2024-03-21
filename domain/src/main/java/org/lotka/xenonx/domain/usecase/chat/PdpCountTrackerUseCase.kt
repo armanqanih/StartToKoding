@@ -1,4 +1,4 @@
-package org.lotka.xenonx.domain.usecase.pdp
+package org.lotka.xenonx.domain.usecase.chat
 
 
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class PdpCountTrackerUseCase @Inject constructor(private val repository: HomeRepository) {
 
     suspend operator fun invoke(id: Int): Flow<ResultState<Boolean>> {
-        return flowOf(repository.pdpCountTracker(id))
+        return flowOf(repository.pushNewChatListModel(id))
     }
 
 

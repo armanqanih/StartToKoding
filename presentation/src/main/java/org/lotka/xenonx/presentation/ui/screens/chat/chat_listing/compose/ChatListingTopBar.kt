@@ -56,7 +56,7 @@ fun ChatListingTopBar(
                     tint = Color.Black,
                     modifier = Modifier
                         .clickable {
-//                            onToggleTheme()
+                            onClick()
                         }
                 )
                 Spacer(modifier = Modifier.weight(1f))

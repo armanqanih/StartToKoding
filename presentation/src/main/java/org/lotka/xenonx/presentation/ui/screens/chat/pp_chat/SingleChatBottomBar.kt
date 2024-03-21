@@ -26,11 +26,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.lotka.xenonx.presentation.R
-import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.PlpViewModel
+import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
 
 @Composable
 fun SingleChatBottomBar(
-   viewModel: PlpViewModel
+   viewModel: ChatListViewModel
 ) {
     var messageText by remember { mutableStateOf("") }
 

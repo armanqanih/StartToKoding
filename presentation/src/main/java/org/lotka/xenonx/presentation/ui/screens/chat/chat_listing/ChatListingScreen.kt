@@ -91,7 +91,7 @@ import java.util.Collections.emptyList
 @Composable
 fun ChatListingScreen(
     navController: NavController,
-    viewModel: PlpViewModel,
+    viewModel: ChatListViewModel,
     onNavigateToRecipeDetailScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit) {
@@ -226,7 +226,9 @@ fun ChatListingScreen(
                                 .background(color = TelegramBackGround),
                             topBar = {
                                 ChatListingTopBar(
-                                    onClick = {},
+                                    onClick = {
+                                              viewModel.onTriggerEvent(ChatListScreenEvent.SearchLocationPhrase)
+                                    },
                                     mainScreens = true,
                                     onToggleTheme = {
                                         onToggleTheme()

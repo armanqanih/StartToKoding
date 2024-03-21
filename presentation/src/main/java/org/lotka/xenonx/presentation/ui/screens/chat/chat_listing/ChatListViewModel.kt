@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.lotka.xenonx.domain.model.model.chat.chat_list.ChatListResponseItemModel
 import org.lotka.xenonx.domain.model.model.location.LocationSearchItem
-import org.lotka.xenonx.domain.model.model.plp.PlpItemResultModel
-import org.lotka.xenonx.domain.usecase.location.SearchLocationUseCase
-import org.lotka.xenonx.domain.usecase.plp.SearchPlpUseCase
+import org.lotka.xenonx.domain.usecase.chat.ObserveUserChatListingUseCase
+import org.lotka.xenonx.domain.usecase.chat.PdpCountTrackerUseCase
 import org.lotka.xenonx.domain.usecase.update.GetUpdateUseCase
 import org.lotka.xenonx.domain.util.ResultState
 import org.lotka.xenonx.presentation.ui.app.BaseViewModel
@@ -34,20 +34,21 @@ const val STATE_KEY_LIST_POSITION = "recipe.state.query.list_position"
 
 
 @HiltViewModel
-class PlpViewModel @Inject constructor(
+class ChatListViewModel @Inject constructor(
     private val dispatchers: DispatchersProvider,
-    private val searchPlpUseCase: SearchPlpUseCase,
-    private val searchLocationCase: SearchLocationUseCase,
+    private val observeUserChatListingUseCase: ObserveUserChatListingUseCase,
+    private val pdpCountTrackerUseCase: PdpCountTrackerUseCase,
+
     private val savedStateHandle: SavedStateHandle,
     val updateUseCase: GetUpdateUseCase,
 
-) : BaseViewModel(dispatchers) {
+    ) : BaseViewModel(dispatchers) {
  
 
 
 
 
-     var item: PlpItemResultModel? = null
+     var item: ChatListResponseItemModel? = null
 
     var isIndicatedUpdateAvailable by mutableStateOf(false)
     val searchAreaResult = MutableStateFlow<List<LocationSearchItem?>>(emptyList())
@@ -86,7 +87,7 @@ class PlpViewModel @Inject constructor(
 
 
 
-    val sessions = MutableStateFlow<List<PlpItemResultModel?>>(emptyList())
+    val sessions = MutableStateFlow<List<ChatListResponseItemModel?>>(emptyList())
     val sessionUiState = MutableStateFlow<UIState>(UIState.Success)
 
 
@@ -154,7 +155,7 @@ class PlpViewModel @Inject constructor(
     }
 
 
-    private fun appendRecipes(recipes: List<PlpItemResultModel?>) {
+    private fun appendRecipes(recipes: List<ChatListResponseItemModel?>) {
         val recipes2 = recipes
         val current = ArrayList(this.sessions.value)
         current.addAll(recipes2)
@@ -179,7 +180,7 @@ class PlpViewModel @Inject constructor(
         page.intValue = 0
         viewModelScope.launch {
             sessionUiState.emit(UIState.Loading)
-            searchPlpUseCase.invoke(
+            observeUserChatListingUseCase.invoke(
                 page = page.intValue,
             ).collect {
                 when (it) {
@@ -195,7 +196,7 @@ class PlpViewModel @Inject constructor(
                     is ResultState.Success -> {
                         sessions.value = emptyList()
                         sessionUiState.emit(UIState.Success)
-                        it.data?.plpItemResultModel?.let { it1 -> appendRecipes(recipes = it1) }
+                        it.data?.chatListItemModel?.let { it1 -> appendRecipes(recipes = it1) }
                         totalItems.value = it.data?.total ?: 0
                     }
 
@@ -213,7 +214,7 @@ class PlpViewModel @Inject constructor(
                     incrementPage()
                     if (page.value >= 1) {
                         sessionUiState.emit(UIState.PaginationLoading)
-                        searchPlpUseCase.invoke(
+                        observeUserChatListingUseCase.invoke(
                             page = page.value,
                         ).collect {
                             when (it) {
@@ -227,7 +228,7 @@ class PlpViewModel @Inject constructor(
                                     isActiveJobRunning.value = true
                                 }
                                 is ResultState.Success -> {
-                                    it.data?.plpItemResultModel?.let { it1 -> appendRecipes(recipes = it1) }
+                                    it.data?.chatListItemModel?.let { it1 -> appendRecipes(recipes = it1) }
                                     totalItems.value = it.data?.total ?: 0
                                     viewModelScope.launch {
                                         delay(1400)
@@ -258,6 +259,10 @@ class PlpViewModel @Inject constructor(
                         nextPage()
                     }
                     is ChatListScreenEvent.SearchLocationPhrase -> {
+                        viewModelScope.launch {
+                            pdpCountTrackerUseCase.invoke(12)
+
+                        }
                     }
                     else -> {}
                 }
