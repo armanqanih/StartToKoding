@@ -12,6 +12,7 @@ import com.kilid.portal.presentation.ui.app.HomeApp
 import dagger.hilt.android.AndroidEntryPoint
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
+import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatViewModel
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
     private val chatListViewModel by viewModels<ChatListViewModel>()
+    private val singleChatViewModel by viewModels<SingleChatViewModel>()
 
 
 //    @Inject
@@ -42,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
                     onNavigateToRecipeDetailScreen = { navController.navigate(HomeScreensNavigation.SingleChatScreen.route) },
                     isDarkTheme = false,
                     onToggleTheme = { },
-
+                    singeChatViewModel = singleChatViewModel
                     )
             }
         }

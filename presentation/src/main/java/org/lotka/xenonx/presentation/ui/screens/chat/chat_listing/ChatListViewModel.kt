@@ -58,21 +58,6 @@ class ChatListViewModel @Inject constructor(
 
     val inChatProsess = mutableStateOf(false)
 
-    private val _messages: MutableStateFlow<List<String>> = MutableStateFlow(emptyList())
-
-    // Exposed immutable state for observing
-    val messages = _messages.asStateFlow()
-
-    // Function to send a message
-    fun sendMessage(message: String) {
-        // Append the new message to the existing list of messages
-        _messages.value += message
-    }
-
-    fun getMessageText(index: Int): String? {
-        return messages.value.getOrNull(index)
-    }
-
 
     private var initialFilterState: String = ""
 

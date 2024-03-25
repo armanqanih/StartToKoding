@@ -23,7 +23,6 @@ import org.lotka.xenonx.presentation.theme.KilidTypography
 import org.lotka.xenonx.presentation.theme.OnlineTextColor
 import org.lotka.xenonx.presentation.theme.kilidDarkBackgound
 import org.lotka.xenonx.presentation.theme.kilidWhiteBackgound
-import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
 
 @Composable
 fun SingleChatTopBar(
@@ -33,7 +32,7 @@ fun SingleChatTopBar(
     onBackPressed: () -> Unit,
     onToggleTheme: () -> Unit,
     isDarkMode: Boolean = false,
-    viewModel: ChatListViewModel,
+    viewModel: org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatViewModel,
     isOnline : IsOnlineStatus = IsOnlineStatus.ISTYPING
 ) {
     TopAppBar(

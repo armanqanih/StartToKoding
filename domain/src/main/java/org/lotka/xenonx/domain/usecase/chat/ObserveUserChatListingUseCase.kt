@@ -14,9 +14,7 @@ class ObserveUserChatListingUseCase @Inject
 constructor(private val repository: HomeRepository) {
 
 
-     operator fun invoke(
-        page: Int
-    ): Flow<ResultState<ChatListResponseModel>> {
+    operator fun invoke(page: Int): Flow<ResultState<ChatListResponseModel>> {
 
         return repository.observeUserChatList(page = page)
 

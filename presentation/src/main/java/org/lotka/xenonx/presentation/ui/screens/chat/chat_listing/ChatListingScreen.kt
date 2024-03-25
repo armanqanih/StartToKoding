@@ -245,6 +245,7 @@ fun ChatListingScreen(
                                 val swipeRefreshState = rememberPullRefreshState(
                                     refreshing = uiState == UIState.Loading,
                                     onRefresh = {
+
                                         viewModel.onTriggerEvent(ChatListScreenEvent.NewSearchEvent)
                                     }
                                 )
@@ -444,7 +445,6 @@ fun ChatListingScreen(
                                                                     item = recipe,
                                                                     screen = configuration,
                                                                     onMoreClicked = {
-
                                                                     },
                                                                     onClicked = {
                                                                         viewModel.savedScrollIndex = index

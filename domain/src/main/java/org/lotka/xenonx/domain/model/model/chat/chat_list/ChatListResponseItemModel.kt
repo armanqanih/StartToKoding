@@ -12,7 +12,7 @@ data class ChatListResponseItemModel(
     var lastMessageText: String? = null,
     var numUnreadMessage: Long? = null,
 
-
+    var isGood: Boolean? = null,
     var lastOnlineTime: String? = null,
     var lastTypingTime: String? = null,
     var lastChatSeenTime: String? = null,

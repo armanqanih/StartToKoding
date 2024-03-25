@@ -1,6 +1,7 @@
 package com.kilid.portal.presentation.ui.app
 
 
+import SingleChatScreen
 import android.annotation.SuppressLint
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
@@ -20,7 +21,8 @@ import org.lotka.xenonx.presentation.ui.app.MainViewModel
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListingScreen
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
-import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatScreen
+
+import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatViewModel
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -31,6 +33,7 @@ fun HomeApp(
     viewModel: MainViewModel,
     navController: NavHostController,
     plpviewModel: ChatListViewModel,
+    singeChatViewModel: SingleChatViewModel,
     onNavigateToRecipeDetailScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit,
@@ -79,7 +82,7 @@ fun HomeApp(
                         onBackPressed = { navController.popBackStack() },
                         isDarkMode = isDarkTheme,
                         onToggleTheme = onToggleTheme,
-                        viewModel = plpviewModel,
+                        viewModel = singeChatViewModel,
                         navController = navController,
                     )
                 }

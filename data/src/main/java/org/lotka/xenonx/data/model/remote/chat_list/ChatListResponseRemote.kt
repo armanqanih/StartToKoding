@@ -29,7 +29,7 @@ private fun ChatListResponseItemRemote?.toDomain() : ChatListResponseItemModel {
         userNickName = this?.userNickName,
         smallProfileImage = this?.smallProfileImage,
         lastMessageText = this?.lastMessageText,
-
+        isGood = if(this?.userNickName=="arman") true else false,
         numUnreadMessage = this?.numUnreadMessage,
         lastOnlineTime = convertMillisToLocalizedDateTime(this?.lastOnlineTime,"Asia/Tehran"),
         lastTypingTime = convertMillisToLocalizedDateTime(this?.lastTypingTime,"Asia/Tehran"),
