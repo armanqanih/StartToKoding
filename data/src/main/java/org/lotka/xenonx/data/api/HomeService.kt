@@ -3,7 +3,7 @@ package org.lotka.xenonx.data.api
 
 import org.lotka.xenonx.data.model.remote.contactInfo.ContactInformationRemote
 import org.lotka.xenonx.data.model.remote.location.LocationSearchResponseRemote
-import org.lotka.xenonx.data.model.remote.pdp.PdpRemote
+
 import org.lotka.xenonx.data.model.remote.update.AppStatusResponseRemote
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -17,12 +17,6 @@ interface HomeService {
         "LOCALE: FA",
         "Content-Type: application/json"
     )
-
-    @GET("listing_api/v1.0/gListing/single")
-    suspend fun getSingleListing(
-        @Query("Identifier") identifier: Int
-    ): PdpRemote // Replace SingleListingRemote with your actual data model class for the single listing response
-
 
     @GET("listing_api/v1.0/gListing/single/track")
     suspend fun pdpCountTracker(

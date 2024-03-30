@@ -12,7 +12,7 @@ import org.lotka.xenonx.domain.util.ResultState
 interface HomeRepository {
     suspend fun searchLocation(text: String): ResultState<LocationSearchModel>
 
-    suspend fun loadPdp(id: Int): ResultState<PdpModel>
+
 
     suspend fun pushNewChatListModel(id: Int): ResultState<Boolean>
 

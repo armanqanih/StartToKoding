@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.lotka.xenonx.presentation.R
 import org.lotka.xenonx.domain.enums.IsOnlineStatus
@@ -27,12 +28,13 @@ import org.lotka.xenonx.presentation.theme.kilidWhiteBackgound
 @Composable
 fun SingleChatTopBar(
     showAgency: Boolean = true,
-    onClick: () -> Unit,
     mainScreens: Boolean = false,
     onBackPressed: () -> Unit,
     onToggleTheme: () -> Unit,
     isDarkMode: Boolean = false,
-    viewModel: org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatViewModel,
+
+    onUserProfilePictureClick: (() -> Unit)? = null,
+    viewModel: SingleChatViewModel,
     isOnline : IsOnlineStatus = IsOnlineStatus.ISTYPING
 ) {
     TopAppBar(
@@ -58,7 +60,11 @@ fun SingleChatTopBar(
                 FastImage(
                     modifier = Modifier
                         .size(42.dp)
-                        .clip(CircleShape),
+                        .clip(CircleShape).
+                    clickable {
+                              onUserProfilePictureClick?.invoke()
+                    }
+                    ,
                     imageUrl = R.drawable.ic_info_light, // Consider using actual image URL
                     contentDescription = "Plp Item Image",
                     isRoundImage = true
@@ -74,6 +80,8 @@ fun SingleChatTopBar(
                 ) {
                     Text(text = "jahari",
                         style = KilidTypography.h5,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                    when(isOnline){

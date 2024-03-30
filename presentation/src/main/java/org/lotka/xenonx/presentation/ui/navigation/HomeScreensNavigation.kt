@@ -5,7 +5,7 @@ sealed class HomeScreensNavigation(val route: String) {
 
     object splash : HomeScreensNavigation(route = "splash")
 
-    object plp : HomeScreensNavigation(route = "plp")
+    object chat_list_screen : HomeScreensNavigation(route = "chat_list_screen")
     object pdp : HomeScreensNavigation(route = "pdp")
 
     object HomeChatScreen : HomeScreensNavigation(route = "HomeChatScreen")

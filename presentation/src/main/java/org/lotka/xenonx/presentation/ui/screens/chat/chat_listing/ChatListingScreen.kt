@@ -229,6 +229,7 @@ fun ChatListingScreen(
                                     onClick = {
                                               viewModel.onTriggerEvent(ChatListScreenEvent.SearchLocationPhrase)
                                     },
+
                                     mainScreens = true,
                                     onToggleTheme = {
                                         onToggleTheme()
@@ -236,11 +237,15 @@ fun ChatListingScreen(
                                     onBackPressed = onBack,
                                     isDarkMode = isDarkTheme,
                                 )
+
                             },
                             drawerElevation = 0.dp,
                             drawerGesturesEnabled = true,
                             drawerContentColor = Color.White,
                             drawerScrimColor = Color.White,
+                            bottomBar = {
+//                                ChatListBottomBar(viewModel)
+                            },
                             content = {
                                 val swipeRefreshState = rememberPullRefreshState(
                                     refreshing = uiState == UIState.Loading,
@@ -313,7 +318,7 @@ fun ChatListingScreen(
                                                 .background(if (isDarkTheme) Color.White else Color.White),
                                             state = lazyListState,
                                             verticalArrangement = Arrangement.spacedBy(12.dp),
-                                            horizontalAlignment = Alignment.CenterHorizontally
+                                            horizontalAlignment = CenterHorizontally
                                         ) {
 
 
@@ -321,8 +326,8 @@ fun ChatListingScreen(
                                                 is UIState.Error -> {
                                                     item {
                                                         Column(
-                                                            verticalArrangement = Arrangement.Center,
-                                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                                            verticalArrangement =  Center,
+                                                            horizontalAlignment =  CenterHorizontally,
                                                             modifier = Modifier.height(
                                                                 (configuration.screenHeightDp.dp / 3) * 2
                                                             )
@@ -449,7 +454,7 @@ fun ChatListingScreen(
                                                                     onClicked = {
                                                                         viewModel.savedScrollIndex = index
                                                                         val route =
-                                                                            HomeScreensNavigation.plp.route + "/${it}"
+                                                                            HomeScreensNavigation.chat_list_screen.route + "/${it}"
                                                                         onNavigateToRecipeDetailScreen(route)
                                                                     },
                                                                     onLadderUpClick = {},

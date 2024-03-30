@@ -18,9 +18,7 @@ class HomeRepositoryImpl @Inject constructor(private val dataSource: HomeDataSou
         return dataSource.searchLocation(text)
     }
 
-    override suspend fun loadPdp(id: Int): ResultState<PdpModel> {
-        return dataSource.pdpDetail(id)
-    }
+
 
     override suspend fun pushNewChatListModel(id: Int): ResultState<Boolean> {
         return dataSource.pushNewChatListModel(id)

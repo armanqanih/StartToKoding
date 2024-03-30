@@ -71,7 +71,7 @@ fun SplashScreen(
 
         viewModel.events.collectLatest { event ->
             when (event) {
-                SplashEvent.NavigateToListing -> navController.navigate(HomeScreensNavigation.plp.route)
+                SplashEvent.NavigateToListing -> navController.navigate(HomeScreensNavigation.chat_list_screen.route)
 
                 else -> {}
         }

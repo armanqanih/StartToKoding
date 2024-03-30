@@ -52,7 +52,7 @@ fun HomeApp(
 
         content = { _ ->
             NavHost(navController = navController,
-                startDestination = HomeScreensNavigation.plp.route,
+                startDestination = HomeScreensNavigation.chat_list_screen.route,
                 enterTransition = {
                     // you can change whatever you want transition
                     EnterTransition.None
@@ -62,7 +62,7 @@ fun HomeApp(
                     ExitTransition.None
                 }) {
                 composable(
-                    route = HomeScreensNavigation.plp.route,
+                    route = HomeScreensNavigation.chat_list_screen.route,
                 ) {
                     ChatListingScreen(
                         navController = navController

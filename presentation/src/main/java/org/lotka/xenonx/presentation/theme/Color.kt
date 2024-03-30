@@ -72,6 +72,7 @@ val TelegramBackGroundColor = Color(0xFF2AABEE)
 val DescriptionTextColor = Color(0xFF8D8E90)
 val TelegramBackGround = Color(0xFF272438)
 val TelegrampinkColor = Color(0xFF8270E2)
+
 val LockIconColor = Color(0xFF47A938)
 val OnlineTextColor = Color(0xFFD2E9FB)
 
