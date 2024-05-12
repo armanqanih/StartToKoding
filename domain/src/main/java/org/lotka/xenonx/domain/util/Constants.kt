@@ -5,6 +5,7 @@ object Constants {
     const val POLY_LINE: String = "POLY_LINE"
     const val TR: String = "tr"
     const val EN: String = "en"
+    const val NO_CHATROOM_IN_FIREBASE_DATABASE: String = "NO_CHATROOM_IN_FIREBASE_DATABASE"
 
     const val VERSION_CODE: Int = 1069
     const val COMPANY_DOCUMENT_FILE_SIZE: Float = 10f

@@ -1,16 +1,13 @@
-package org.lotka.xenonx.domain.repository
+package org.lotka.xenonx.data.repository.user
 
-import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.flow.Flow
 import org.lotka.xenonx.domain.model.model.chat.chat_list.ChatListResponseModel
 import org.lotka.xenonx.domain.model.model.user.FriendListRegister
 import org.lotka.xenonx.domain.model.model.user.FriendListRow
 import org.lotka.xenonx.domain.model.model.user.UserItem
-import org.lotka.xenonx.domain.model.model.user.UserListItem
-import org.lotka.xenonx.domain.util.Response
 import org.lotka.xenonx.domain.util.ResultState
 
-interface UserListRepository {
+interface UserDataSource {
     suspend fun loadAcceptedFriendRequestListFromFirebase(): Flow<ResultState<List<FriendListRow>>>
     suspend fun loadPendingFriendRequestListFromFirebase(): Flow<ResultState<List<FriendListRegister>>>
 

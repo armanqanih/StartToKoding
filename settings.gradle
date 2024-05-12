@@ -8,7 +8,7 @@ dependencyResolutionManagement {
 
     }
 }
-rootProject.name = "XenonXX"
+rootProject.name = "BuildingApp"
 include ':app'
 include ':benchmark'
 include ':presentation'

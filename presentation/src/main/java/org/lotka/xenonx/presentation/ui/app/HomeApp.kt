@@ -1,7 +1,8 @@
-package com.kilid.portal.presentation.ui.app
+package org.lotka.xenonx.presentation.ui.app
 
 
-import SingleChatScreen
+
+
 import android.annotation.SuppressLint
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
@@ -11,16 +12,17 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.pager.ExperimentalPagerApi
-import org.lotka.xenonx.presentation.ui.app.HomeActivity
-import org.lotka.xenonx.presentation.ui.app.MainViewModel
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
-import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListingScreen
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
+import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListingScreen
+
+import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatScreen
 
 import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatViewModel
 
@@ -32,14 +34,14 @@ fun HomeApp(
     activity: HomeActivity,
     viewModel: MainViewModel,
     navController: NavHostController,
-    plpviewModel: ChatListViewModel,
+    chatListViewModel: ChatListViewModel,
     singeChatViewModel: SingleChatViewModel,
     onNavigateToRecipeDetailScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit,
+    keyboardController: SoftwareKeyboardController
 
     ) {
-
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -64,18 +66,22 @@ fun HomeApp(
                 composable(
                     route = HomeScreensNavigation.chat_list_screen.route,
                 ) {
+
+//                    UserListScreen(
+//                        navController = navController,
+//                        keyboardController = keyboardController
+//                    )
+
                     ChatListingScreen(
                         navController = navController
                         ,   onToggleTheme = onToggleTheme,
-                        onNavigateToRecipeDetailScreen = onNavigateToRecipeDetailScreen,
+                        onNavigateToSingleChatScreen = onNavigateToRecipeDetailScreen,
                         isDarkTheme = isDarkTheme,
-                        viewModel = plpviewModel,
-
-
+                        viewModel = chatListViewModel,
                         )
                 }
                 composable(
-                    route = HomeScreensNavigation.SingleChatScreen.route,
+                    route = HomeScreensNavigation.single_chat_screen.route,
                 ) {
 
                     SingleChatScreen(

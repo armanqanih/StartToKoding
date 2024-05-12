@@ -43,7 +43,7 @@ import org.lotka.xenonx.presentation.theme.kilidWhiteTexts
 
 
 @Composable
-fun PlpItem(
+fun ChatListItem(
     isDarkTheme: Boolean,
     item: ChatListResponseItemModel,
     screen: Configuration,

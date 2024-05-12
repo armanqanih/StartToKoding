@@ -64,6 +64,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import kotlinx.coroutines.launch
 import org.lotka.xenonx.presentation.R
 import org.lotka.xenonx.presentation.composables.etc.MobinButton
+
 import org.lotka.xenonx.presentation.composables.etc.general.LottieLoading
 import org.lotka.xenonx.presentation.theme.AuthTheme
 import org.lotka.xenonx.presentation.theme.KilidTypography
@@ -77,7 +78,7 @@ import org.lotka.xenonx.presentation.ui.navigation.BackPressHandler
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
 import org.lotka.xenonx.presentation.ui.navigation.onBackPressedFunctionToFinishApp
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.compose.ChatListingTopBar
-import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.compose.PlpItem
+import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.compose.ChatListItem
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.compose.bottom_sheet.PlpBottomSheetType
 import org.lotka.xenonx.presentation.util.UIState
 import timber.log.Timber
@@ -92,7 +93,7 @@ import java.util.Collections.emptyList
 fun ChatListingScreen(
     navController: NavController,
     viewModel: ChatListViewModel,
-    onNavigateToRecipeDetailScreen: (String) -> Unit,
+    onNavigateToSingleChatScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit) {
 
@@ -112,7 +113,9 @@ fun ChatListingScreen(
     val uiState by viewModel.sessionUiState.collectAsState(initial = UIState.Idle)
 
     val lazyListState = rememberLazyListState()
+
     val savedScrollIndex = viewModel.savedScrollIndex
+
 
 
     LaunchedEffect(key1 = savedScrollIndex) {
@@ -445,7 +448,7 @@ fun ChatListingScreen(
                                                             }
 
                                                             if (recipe != null) {
-                                                                PlpItem(
+                                                                ChatListItem(
                                                                     isDarkTheme = isDarkTheme,
                                                                     item = recipe,
                                                                     screen = configuration,
@@ -453,9 +456,9 @@ fun ChatListingScreen(
                                                                     },
                                                                     onClicked = {
                                                                         viewModel.savedScrollIndex = index
-                                                                        val route =
-                                                                            HomeScreensNavigation.chat_list_screen.route + "/${it}"
-                                                                        onNavigateToRecipeDetailScreen(route)
+                                                                     (HomeScreensNavigation.single_chat_screen.route + "/${it}").apply {
+                                                                             onNavigateToSingleChatScreen(this)
+                                                                        }
                                                                     },
                                                                     onLadderUpClick = {},
                                                                     onFeaturedClick = {},

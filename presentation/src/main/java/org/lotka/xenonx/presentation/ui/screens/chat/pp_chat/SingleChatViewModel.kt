@@ -2,10 +2,14 @@ package org.lotka.xenonx.presentation.ui.screens.chat.pp_chat
 
 
 import android.os.Message
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.lotka.xenonx.domain.model.model.chat.chat_list.ChatListResponseItemModel
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,6 +18,7 @@ class SingleChatViewModel @Inject constructor(
 ):ViewModel() {
 
 
+    val chatListItem = MutableStateFlow<ChatListResponseItemModel?>(null)
 
     private val _messages: MutableStateFlow<List<String>> = MutableStateFlow(emptyList())
 

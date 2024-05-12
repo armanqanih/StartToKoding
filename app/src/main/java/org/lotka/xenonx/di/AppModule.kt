@@ -21,6 +21,20 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.components.SingletonComponent
 import org.lotka.xenonx.BaseAppController
+import org.lotka.xenonx.data.repository.user.UserListRepositoryImpl
+import org.lotka.xenonx.data.repository.user.UserRemoteDataSource
+import org.lotka.xenonx.domain.repository.UserListRepository
+import org.lotka.xenonx.domain.usecase.user.AcceptPendingFriendRequestToFirebase
+import org.lotka.xenonx.domain.usecase.user.CheckChatRoomExistedFromFirebase
+import org.lotka.xenonx.domain.usecase.user.CheckFriendListRegisterIsExistedFromFirebase
+import org.lotka.xenonx.domain.usecase.user.CreateChatRoomToFirebase
+import org.lotka.xenonx.domain.usecase.user.CreateFriendListRegisterToFirebase
+import org.lotka.xenonx.domain.usecase.user.LoadAcceptedFriendRequestListFromFirebase
+import org.lotka.xenonx.domain.usecase.user.LoadPendingFriendRequestListFromFirebase
+import org.lotka.xenonx.domain.usecase.user.OpenBlockedFriendToFirebase
+import org.lotka.xenonx.domain.usecase.user.RejectPendingFriendRequestToFirebase
+import org.lotka.xenonx.domain.usecase.user.SearchUserFromFirebase
+import org.lotka.xenonx.domain.usecase.user.UserListScreenUseCases
 import org.lotka.xenonx.domain.util.Constants
 import org.lotka.xenonx.presentation.util.DispatchersProvider
 import org.lotka.xenonx.presentation.util.DispatchersProviderImpl
@@ -35,6 +49,50 @@ object AppModule {
 //  @Singleton
 //  fun FirebaseAuth(): FirebaseAuth = Firebase.auth
 //
+
+
+
+
+    @Singleton
+    @Provides
+    fun provideUserListScreenRepository(
+      datastore:UserRemoteDataSource
+    ): UserListRepository = UserListRepositoryImpl(datastore)
+
+
+    @Singleton
+    @Provides
+    fun provideUserListScreenUseCase(userListScreenRepository: UserListRepository) =
+        UserListScreenUseCases(
+            acceptPendingFriendRequestToFirebase = AcceptPendingFriendRequestToFirebase(
+                userListScreenRepository
+            ),
+            checkChatRoomExistedFromFirebase = CheckChatRoomExistedFromFirebase(
+                userListScreenRepository
+            ),
+            checkFriendListRegisterIsExistedFromFirebase = CheckFriendListRegisterIsExistedFromFirebase(
+                userListScreenRepository
+            ),
+            createChatRoomToFirebase = CreateChatRoomToFirebase(userListScreenRepository),
+            createFriendListRegisterToFirebase = CreateFriendListRegisterToFirebase(
+                userListScreenRepository
+            ),
+            loadAcceptedFriendRequestListFromFirebase = LoadAcceptedFriendRequestListFromFirebase(
+                userListScreenRepository
+            ),
+            loadPendingFriendRequestListFromFirebase = LoadPendingFriendRequestListFromFirebase(
+                userListScreenRepository
+            ),
+            openBlockedFriendToFirebase = OpenBlockedFriendToFirebase(userListScreenRepository),
+            rejectPendingFriendRequestToFirebase = RejectPendingFriendRequestToFirebase(
+                userListScreenRepository
+            ),
+            searchUserFromFirebase = SearchUserFromFirebase(userListScreenRepository),
+        )
+
+
+
+
 
 
     @Provides

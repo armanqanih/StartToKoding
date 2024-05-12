@@ -331,7 +331,7 @@ fun Pv(
 
                         if (recipe != null) {
 
-                            PlpItem(
+                            ChatListItem(
                                 isDarkTheme = isDarkTheme,
                                 item = recipe,
                                 screen = configuration,
@@ -531,7 +531,7 @@ fun All(
 
                         if (recipe != null) {
 
-                            PlpItem(
+                            ChatListItem(
                                 isDarkTheme = isDarkTheme,
                                 item = recipe,
                                 screen = configuration,

@@ -1,9 +1,9 @@
-import androidx.activity.viewModels
+package org.lotka.xenonx.presentation.ui.screens.chat.pp_chat
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -14,19 +14,14 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import org.lotka.xenonx.presentation.composables.TelegramTextField
 import org.lotka.xenonx.presentation.theme.TelegramBackGround
-import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatViewModel
-import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatBottomBar
-import org.lotka.xenonx.presentation.ui.screens.chat.pp_chat.SingleChatTopBar
 
 @Composable
 fun SingleChatScreen(
@@ -34,17 +29,23 @@ fun SingleChatScreen(
     onToggleTheme: () -> Unit,
     isDarkMode: Boolean = false,
     viewModel: SingleChatViewModel,
-    navController: NavController
-) {
+    navController: NavController,
+
+    ) {
     val messages by viewModel.messages.collectAsState()
-   val reversed = messages.reversed()
+    val reversed = messages.reversed()
+
+
+
+
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
             .background(color = TelegramBackGround),
         topBar = {
             SingleChatTopBar(
-               onUserProfilePictureClick = {},
+                onUserProfilePictureClick = {},
                 mainScreens = true,
                 onToggleTheme = {
                     onToggleTheme()
@@ -67,7 +68,7 @@ fun SingleChatScreen(
                 items(messages.indices.toList()) { index ->
                     val message = viewModel.getMessageText(index)
                     message?.let { text ->
-                        MessageItem(message = reversed[index], viewModel = viewModel)
+                        MessageItem(message = reversed[index] , viewModel = viewModel)
                     }
                 }
             }
@@ -80,7 +81,7 @@ fun MessageItem(
     message: String,
     viewModel: SingleChatViewModel,
 
-) {
+    ) {
     var isMenuVisible by remember { mutableStateOf(false) }
     var editedMessage by remember { mutableStateOf("") }
     var isEditing by remember { mutableStateOf(false) }
@@ -125,58 +126,61 @@ fun MessageItem(
                             tint = Color.Gray, modifier = Modifier
                                 .clickable {
                                     viewModel.editMessage(message, editedMessage)
-                                    isEditing = false // Close editing mode after sending the edited message
+                                    isEditing =
+                                        false // Close editing mode after sending the edited message
                                     isMenuVisible = false // Close dropdown menu
                                 }
                                 .size(27.dp)
                         )
                     }
 
-                )}else{
+                )
+            } else {
 
             }
-                Text(
-                    text = message,
-                    fontSize = 18.sp,
-                    color = Color.White,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .clickable {
-                            isMenuVisible = true
-                        }
+            Text(
+                text = message,
+                fontSize = 18.sp,
+                color = Color.White,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .clickable {
+                        isMenuVisible = true
+                    }
 //                    .longPressGestureFilter(onLongPress = { isMenuVisible = true })
-                )
+            )
 
-                if (isMenuVisible) {
-                    val menuItems = listOf("Edit", "Delete", "Reply")
+            if (isMenuVisible) {
+                val menuItems = listOf("Edit", "Delete", "Reply")
 
-                    DropdownMenu(
-                        expanded = isMenuVisible,
-                        onDismissRequest = { isMenuVisible = false }
-                    ) {
-                        menuItems.forEach { menuItem ->
-                            DropdownMenuItem(onClick = {
-                                when (menuItem) {
-                                    "Edit" -> {
+                DropdownMenu(
+                    expanded = isMenuVisible,
+                    onDismissRequest = { isMenuVisible = false }
+                ) {
+                    menuItems.forEach { menuItem ->
+                        DropdownMenuItem(onClick = {
+                            when (menuItem) {
+                                "Edit" -> {
 //                                        viewModel.editMessage(message, editedMessage)
-                                          isEditing = true
-                                        editedMessage = message
-                                    }
-                                    "Delete" -> viewModel.deleteMessage(message)
-                                    "Reply" ->{
+                                    isEditing = true
+                                    editedMessage = message
+                                }
+
+                                "Delete" -> viewModel.deleteMessage(message)
+                                "Reply" -> {
 
                                     viewModel.replyToMessage(message, "")
 
-                                    }
                                 }
-                                isMenuVisible = false
-                            }) {
-                                Text(menuItem)
                             }
+                            isMenuVisible = false
+                        }) {
+                            Text(menuItem)
                         }
                     }
                 }
             }
         }
     }
+}
 

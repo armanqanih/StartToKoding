@@ -5,10 +5,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.navigation.compose.rememberNavController
-import com.kilid.portal.presentation.ui.app.HomeApp
 import dagger.hilt.android.AndroidEntryPoint
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
 import org.lotka.xenonx.presentation.ui.screens.chat.chat_listing.ChatListViewModel
@@ -31,21 +32,26 @@ class HomeActivity : AppCompatActivity() {
 
 //    @Inject
 //    lateinit var customUpdateManager: CustomUpdateManager
+    @OptIn(ExperimentalComposeUiApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
+            val keyboardController = LocalSoftwareKeyboardController.current
             CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-                HomeApp(
-                    activity = this@HomeActivity,
-                    viewModel = viewModel,
-                    navController = navController,
-                    plpviewModel = chatListViewModel,
-                    onNavigateToRecipeDetailScreen = { navController.navigate(HomeScreensNavigation.SingleChatScreen.route) },
-                    isDarkTheme = false,
-                    onToggleTheme = { },
-                    singeChatViewModel = singleChatViewModel
+                if (keyboardController != null) {
+                    HomeApp(
+                        activity = this@HomeActivity,
+                        viewModel = viewModel,
+                        navController = navController,
+                        chatListViewModel = chatListViewModel,
+                        onNavigateToRecipeDetailScreen = { navController.navigate(HomeScreensNavigation.single_chat_screen.route) },
+                        isDarkTheme = false,
+                        onToggleTheme = { },
+                        singeChatViewModel = singleChatViewModel,
+                        keyboardController = keyboardController
                     )
+                }
             }
         }
 

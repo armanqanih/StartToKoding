@@ -1,0 +1,197 @@
+package org.lotka.xenonx.presentation.ui.screens.chat.user_list.compose
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Icon
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.ThumbUp
+
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
+import org.lotka.xenonx.domain.enums.MessageStatus
+import org.lotka.xenonx.domain.model.model.user.FriendListRow
+
+import java.text.SimpleDateFormat
+import java.util.*
+
+@Composable
+fun AcceptPendingRequestList(
+    item: FriendListRow,
+    onclick: () -> Unit = {}
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .clickable {
+                onclick()
+            }
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(
+                  8.dp
+                ),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Surface(
+                modifier = Modifier
+                    .size(60.dp),
+//                    .padding(end = MaterialTheme.spacing.small),
+                shape = CircleShape
+            ) {
+                if (item.userPictureUrl != "") {
+                    Image(
+                        painter = rememberAsyncImagePainter(item.userPictureUrl),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+//                        modifier = Modifier
+//                            .aspectRatio(f)
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Filled.Person,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(4.dp)
+                            .aspectRatio(1f)
+                    )
+                }
+            }
+            Box(modifier = Modifier.fillMaxSize()) {
+                val sdf = remember { SimpleDateFormat("hh:mm", Locale.ROOT) }
+                if (item.lastMessage.status == MessageStatus.RECEIVED.toString() && item.lastMessage.profileUUID == item.userUUID) {
+                    Row(
+                        modifier = Modifier.fillMaxSize().padding(start = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Column {
+                            Text(
+                                text = item.userEmail,
+//                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = "Last Message: " + item.lastMessage.message,
+//                                style = MaterialTheme.typography.titleSmall,
+                            )
+                        }
+                        Column {
+                            Text(
+                                text = sdf.format(
+                                    item.lastMessage.date
+                                ),
+//                                style = MaterialTheme.typography.titleSmall,
+//                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier
+                                    .align(Alignment.CenterHorizontally)
+                            )
+
+                            Icon(
+                                imageVector = Icons.Filled.ThumbUp,
+                                tint = Color.Green,
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(20.dp)
+                                    .align(Alignment.CenterHorizontally)
+                            )
+                        }
+
+                    }
+                } else {
+                    val dateTimeControl: Long = 0
+                    if (!item.lastMessage.date.equals(dateTimeControl)) {
+
+                        if (item.lastMessage.profileUUID != item.userUUID) {
+                            Row(
+                                modifier = Modifier.fillMaxSize().padding(start = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Column {
+                                    Text(
+                                        text = item.userEmail,
+//                                        style = MaterialTheme.typography.titleMedium,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Spacer(modifier = Modifier.height(8.dp))
+                                    Text(
+                                        text = "Me: " + item.lastMessage.message,
+//                                        style = MaterialTheme.typography.titleSmall,
+
+                                        )
+                                }
+                                Text(
+                                    text = sdf.format(
+                                        item.lastMessage.date
+                                    ),
+//                                    style = MaterialTheme.typography.titleSmall
+                                )
+                            }
+
+                        } else {
+                            Row(
+                                modifier = Modifier.fillMaxSize().padding(start = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Column {
+                                    Text(
+                                        text = item.userEmail,
+//                                        style = MaterialTheme.typography.titleMedium,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Spacer(modifier = Modifier.height(8.dp))
+                                    Text(
+                                        text = "Last Message: " + item.lastMessage.message,
+//                                        style = MaterialTheme.typography.titleSmall,
+                                    )
+                                }
+                                Text(
+                                    text = sdf.format(
+                                        item.lastMessage.date
+                                    ),
+//                                    style = MaterialTheme.typography.titleSmall
+                                )
+                            }
+                        }
+
+                    } else {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxHeight().padding(start = 8.dp)
+                        ) {
+                            Text(
+                                text = item.userEmail,
+//                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .align(Alignment.Center)
+                                    .padding(2.dp)
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

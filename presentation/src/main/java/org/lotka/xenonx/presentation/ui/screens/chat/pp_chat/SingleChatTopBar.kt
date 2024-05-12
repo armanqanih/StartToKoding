@@ -10,6 +10,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,6 +39,11 @@ fun SingleChatTopBar(
     viewModel: SingleChatViewModel,
     isOnline : IsOnlineStatus = IsOnlineStatus.ISTYPING
 ) {
+
+
+    val chatListItem by viewModel.chatListItem.collectAsState(initial = null)
+
+
     TopAppBar(
         title = {
             Row(
@@ -65,7 +72,7 @@ fun SingleChatTopBar(
                               onUserProfilePictureClick?.invoke()
                     }
                     ,
-                    imageUrl = R.drawable.ic_info_light, // Consider using actual image URL
+                    imageUrl = chatListItem?.smallProfileImage, // Consider using actual image URL
                     contentDescription = "Plp Item Image",
                     isRoundImage = true
                 )
@@ -78,7 +85,7 @@ fun SingleChatTopBar(
                     horizontalAlignment = Alignment.End,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "jahari",
+                    Text(text = chatListItem?.userNickName?:"",
                         style = KilidTypography.h5,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis

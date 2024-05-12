@@ -43,7 +43,7 @@ class ChatListViewModel @Inject constructor(
     val updateUseCase: GetUpdateUseCase,
 
     ) : BaseViewModel(dispatchers) {
- 
+
 
 
 
@@ -85,6 +85,7 @@ class ChatListViewModel @Inject constructor(
     val page = mutableIntStateOf(0)
     val latestIndex = mutableIntStateOf(0)
     private val totalItems = mutableIntStateOf(0)
+
     var savedScrollIndex by mutableIntStateOf(0)
 
     private var recipeListScrollPosition = 0

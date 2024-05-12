@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    val appUpdateUseCase: GetUpdateUseCase,
+    private val appUpdateUseCase: GetUpdateUseCase,
 ) : ViewModel() {
 
     init {
