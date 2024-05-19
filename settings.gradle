@@ -8,7 +8,7 @@ dependencyResolutionManagement {
 
     }
 }
-rootProject.name = "BuildingApp"
+rootProject.name = "StartToCoding"
 include ':app'
 include ':benchmark'
 include ':presentation'
