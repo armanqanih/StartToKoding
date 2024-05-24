@@ -7,6 +7,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent_grey">#B3333131</color>
-
     <color name="primary_background">#222831</color>
+    <color name="shimmer">#414243</color>
+    <color name="display_small">#FFFFFFFF</color>
+    <color name="text_medium">#FFB0B3B8</color>
+    <color name="text_title">#E4E6EB</color>
+    <color name="body">#B0B3B8</color>
+    <color name="input_background">#3A3B3C</color>
+    <color name="placeholder">#DDDDDD</color>
+
+
+
 </resources>
