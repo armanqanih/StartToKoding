@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
+import org.lotka.xenonx.presentation.ui.screens.HomeScreen.PlpViewModel
 
 
 @AndroidEntryPoint
@@ -22,6 +23,9 @@ class HomeActivity : AppCompatActivity() {
         setContent {
             val navController = rememberNavController()
             val keyboardController = LocalSoftwareKeyboardController.current
+              val plpViewModel by viewModels<PlpViewModel>()
+
+
             CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
                 if (keyboardController != null) {
                     HomeApp(
@@ -30,7 +34,8 @@ class HomeActivity : AppCompatActivity() {
                         onNavigateToRecipeDetailScreen = { navController.navigate(HomeScreensNavigation.single_chat_screen.route) },
                         isDarkTheme = false,
                         onToggleTheme = { },
-                        keyboardController = keyboardController
+                        keyboardController = keyboardController,
+                        plpViewModel = plpViewModel
                     )
                 }
             }

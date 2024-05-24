@@ -4,6 +4,7 @@ package org.lotka.xenonx.presentation.ui.app
 
 
 import android.annotation.SuppressLint
+import androidx.activity.viewModels
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.material.ExperimentalMaterialApi
@@ -19,7 +20,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.pager.ExperimentalPagerApi
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.HomeScreen
+import org.lotka.xenonx.presentation.ui.screens.HomeScreen.PlpScreen
+import org.lotka.xenonx.presentation.ui.screens.HomeScreen.PlpViewModel
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -31,7 +33,8 @@ fun HomeApp(
     onNavigateToRecipeDetailScreen: (String) -> Unit,
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit,
-    keyboardController: SoftwareKeyboardController
+    keyboardController: SoftwareKeyboardController,
+    plpViewModel: PlpViewModel
     ) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -57,7 +60,14 @@ fun HomeApp(
                 composable(
                     route = HomeScreensNavigation.HomeChatScreen.route,
                 ) {
-                  HomeScreen()
+
+                  PlpScreen(
+                      navController = navController,
+                      onNavigateToRecipeDetailScreen = onNavigateToRecipeDetailScreen,
+                      isDarkTheme = isDarkTheme,
+                      onToggleTheme = onToggleTheme,
+                      viewModel = plpViewModel
+                  )
 
                 }
                 composable(
