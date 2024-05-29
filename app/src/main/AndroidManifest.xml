@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
-        android:theme="@style/Theme.KilidPro"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
         <profileable
@@ -30,7 +30,7 @@
         <activity
             android:name=".presentation.ui.app.HomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.KilidPro.NoActionBar"
+            android:theme="@style/App.Starting.Theme"
             android:windowSoftInputMode="adjustPan">
 
             <intent-filter>
