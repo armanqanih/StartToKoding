@@ -1,4 +1,4 @@
-package org.lotka.xenonx.presentation.ui.screens.HomeScreen.bottom_sheet
+package org.lotka.xenonx.presentation.ui.screens.plp.bottom_sheet
 
 enum class PlpBottomSheetType {
     NONE,

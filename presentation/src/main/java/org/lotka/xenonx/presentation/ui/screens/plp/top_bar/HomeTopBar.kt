@@ -1,4 +1,4 @@
-package org.lotka.xenonx.presentation.ui.screens.HomeScreen.top_bar
+package org.lotka.xenonx.presentation.ui.screens.plp.top_bar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

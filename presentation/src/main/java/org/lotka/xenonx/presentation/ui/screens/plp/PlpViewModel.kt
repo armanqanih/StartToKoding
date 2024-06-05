@@ -1,6 +1,5 @@
-package org.lotka.xenonx.presentation.ui.screens.HomeScreen
+package org.lotka.xenonx.presentation.ui.screens.plp
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -10,17 +9,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lotka.xenonx.domain.model.PlpItemResultModel
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.bottom_sheet.PlpBottomSheetType
+import org.lotka.xenonx.presentation.ui.screens.plp.bottom_sheet.PlpBottomSheetType
 import org.lotka.xenonx.presentation.util.DialogQueue
 import org.lotka.xenonx.presentation.util.UIState
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -58,7 +52,7 @@ class PlpViewModel @Inject constructor(
 
     fun showBottomSheet(type: PlpBottomSheetType) {
         viewModelScope.launch{
-            if(type==PlpBottomSheetType.LOCATION_SEARCH){
+            if(type== PlpBottomSheetType.LOCATION_SEARCH){
                 fullScreenActiveBottomSheet=type
             }else{
                 halfScreenActiveBottomSheet=(type)

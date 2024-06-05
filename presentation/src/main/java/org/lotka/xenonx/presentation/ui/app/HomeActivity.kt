@@ -13,7 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.PlpViewModel
+import org.lotka.xenonx.presentation.ui.screens.plp.PlpViewModel
 
 
 @AndroidEntryPoint
@@ -28,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
               val plpViewModel by viewModels<PlpViewModel>()
 
 
-            CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
+            CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
                 if (keyboardController != null) {
                     HomeApp(
                         activity = this@HomeActivity,

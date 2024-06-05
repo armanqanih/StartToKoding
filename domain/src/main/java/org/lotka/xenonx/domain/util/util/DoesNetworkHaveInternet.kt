@@ -1,7 +1,8 @@
 package org.lotka.xenonx.domain.util.util
 
+import android.content.ContentValues.TAG
 import android.util.Log
-import org.lotka.xenonx.domain.util.Constants.TAG
+
 import java.io.IOException
 import java.net.InetSocketAddress
 import javax.net.SocketFactory

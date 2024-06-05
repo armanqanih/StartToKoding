@@ -1,4 +1,4 @@
-package org.lotka.xenonx.presentation.ui.screens.HomeScreen
+package org.lotka.xenonx.presentation.ui.screens.plp
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
@@ -68,8 +68,8 @@ import org.lotka.xenonx.presentation.theme.kilidPrimaryColor
 import org.lotka.xenonx.presentation.theme.kilidWhiteBackgound
 import org.lotka.xenonx.presentation.theme.kilidWhiteTexts
 import org.lotka.xenonx.presentation.ui.app.onBackPressedFunctionToFinishApp
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.bottom_sheet.ListingItemBottomSheet
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.bottom_sheet.PlpBottomSheetType
+import org.lotka.xenonx.presentation.ui.screens.plp.bottom_sheet.ListingItemBottomSheet
+import org.lotka.xenonx.presentation.ui.screens.plp.bottom_sheet.PlpBottomSheetType
 import org.lotka.xenonx.presentation.util.UIState
 import timber.log.Timber
 import java.util.Collections

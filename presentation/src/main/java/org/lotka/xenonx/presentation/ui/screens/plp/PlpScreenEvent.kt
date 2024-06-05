@@ -1,4 +1,4 @@
-package org.lotka.xenonx.presentation.ui.screens.HomeScreen
+package org.lotka.xenonx.presentation.ui.screens.plp
 
 sealed class PlpScreenEvent {
 

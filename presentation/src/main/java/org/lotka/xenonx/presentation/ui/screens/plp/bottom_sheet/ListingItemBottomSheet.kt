@@ -1,4 +1,4 @@
-package org.lotka.xenonx.presentation.ui.screens.HomeScreen.bottom_sheet
+package org.lotka.xenonx.presentation.ui.screens.plp.bottom_sheet
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -35,7 +35,7 @@ import org.lotka.xenonx.presentation.theme.kilidPrimaryColor
 import org.lotka.xenonx.presentation.theme.newGrayTextColor
 import org.lotka.xenonx.presentation.theme.newSecondTextColor
 import org.lotka.xenonx.presentation.theme.newSecondaryColor
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.PlpViewModel
+import org.lotka.xenonx.presentation.ui.screens.plp.PlpViewModel
 
 @ExperimentalMaterialApi
 @Composable

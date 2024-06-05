@@ -4,7 +4,6 @@ package org.lotka.xenonx.presentation.ui.app
 
 
 import android.annotation.SuppressLint
-import androidx.activity.viewModels
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.material.ExperimentalMaterialApi
@@ -20,8 +19,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.pager.ExperimentalPagerApi
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.PlpScreen
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.PlpViewModel
+import org.lotka.xenonx.presentation.ui.navigation.NavigatorScreen
+import org.lotka.xenonx.presentation.ui.screens.plp.PlpScreen
+import org.lotka.xenonx.presentation.ui.screens.plp.PlpViewModel
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -48,7 +48,7 @@ fun HomeApp(
 
         content = { _ ->
             NavHost(navController = navController,
-                startDestination = HomeScreensNavigation.HomeChatScreen.route,
+                startDestination = HomeScreensNavigation.NavigatorRoutScreen.route,
                 enterTransition = {
                     // you can change whatever you want transition
                     EnterTransition.None
@@ -58,16 +58,18 @@ fun HomeApp(
                     ExitTransition.None
                 }) {
                 composable(
-                    route = HomeScreensNavigation.HomeChatScreen.route,
+                    route = HomeScreensNavigation.NavigatorRoutScreen.route,
                 ) {
 
-                  PlpScreen(
-                      navController = navController,
-                      onNavigateToRecipeDetailScreen = onNavigateToRecipeDetailScreen,
-                      isDarkTheme = isDarkTheme,
-                      onToggleTheme = onToggleTheme,
-                      viewModel = plpViewModel
-                  )
+                    NavigatorScreen()
+
+//                  PlpScreen(
+//                      navController = navController,
+//                      onNavigateToRecipeDetailScreen = onNavigateToRecipeDetailScreen,
+//                      isDarkTheme = isDarkTheme,
+//                      onToggleTheme = onToggleTheme,
+//                      viewModel = plpViewModel
+//                  )
 
                 }
                 composable(
