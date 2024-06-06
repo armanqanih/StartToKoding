@@ -26,6 +26,8 @@ import org.lotka.xenonx.domain.model.CoinModel
 import org.lotka.xenonx.presentation.R
 import org.lotka.xenonx.presentation.ui.screens.HomeScreen.HomeScreen
 import org.lotka.xenonx.presentation.ui.screens.HomeScreen.HomeViewModel
+import org.lotka.xenonx.presentation.ui.screens.search.SearchScreen
+import org.lotka.xenonx.presentation.ui.screens.search.SearchViewModel
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -97,16 +99,16 @@ fun NavigatorScreen(
                         navigateToDetails = { article -> navigateToDetails(navController, article) }
                     )
                 }
-//                composable(route = Route.SearchRouteScreen.route) {
-//                    val viewModel: SearchViewModel = hiltViewModel()
-//                    val state = viewModel.state.value
-//                    OnBackClickStateSaver(navController = navController)
-//                    SearchScreen(
-//                        state = state,
-//                        event = viewModel::onEvent,
-//                        navigateToDetails = { article -> navigateToDetails(navController, article) }
-//                    )
-//                }
+                composable(route = Route.SearchRouteScreen.route) {
+                    val viewModel: SearchViewModel = hiltViewModel()
+                    val state = viewModel.state.value
+                    OnBackClickStateSaver(navController = navController)
+                    SearchScreen(
+                        state = state,
+                        event = viewModel::onEvent,
+                        navigateToDetails = { coin -> navigateToDetails(navController, coin) }
+                    )
+                }
 //                composable(route = Route.DetailRoutScreen.route) {
 //                    val viewModel: DetailViewModel = hiltViewModel()
 //                    navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")?.let { article ->

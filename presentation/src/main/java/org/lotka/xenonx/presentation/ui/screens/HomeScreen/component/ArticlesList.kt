@@ -99,7 +99,7 @@ fun handlePagingResult(coins: LazyPagingItems<CoinModel>): Boolean {
 @Composable
 fun ShimmerEffect() {
     Column(verticalArrangement = Arrangement.spacedBy(MediumPadding1)) {
-        repeat(10) {
+        repeat(20) {
             ArticleCardShimmerEffect(
                 modifier = Modifier.padding(horizontal = MediumPadding1)
             )

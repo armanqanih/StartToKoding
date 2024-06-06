@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -19,7 +20,11 @@ import androidx.compose.ui.unit.sp
 import org.lotka.xenonx.domain.model.CoinModel
 
 import org.lotka.xenonx.presentation.theme.Green
+import org.lotka.xenonx.presentation.theme.Magenta
+import org.lotka.xenonx.presentation.theme.MunsellGreen
+import org.lotka.xenonx.presentation.theme.PrimaryDark
 import org.lotka.xenonx.presentation.theme.Red
+import org.lotka.xenonx.presentation.theme.Yellow
 
 @Composable
 fun CoinCard(
@@ -34,11 +39,17 @@ fun CoinCard(
 
         ) {
             Text(
-                text = "${coin.name} ${coin.symbol} ",
+                text = "${coin.name} ${coin.symbol} ${coin.rank} ",
                 style = androidx.compose.material.MaterialTheme.typography.body1,
-                color = Color.Black,
+                color = when (coin.rank) {
+                    1 -> Green
+                    2 -> PrimaryDark
+                    3 -> Magenta
+                    else -> Color.Black // default color if rank is not 1 or 2
+                },
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
+
             )
             Spacer(modifier = Modifier.weight(1f))
                 Text(

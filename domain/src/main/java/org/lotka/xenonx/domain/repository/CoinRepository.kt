@@ -10,7 +10,7 @@ interface CoinRepository {
 
     fun  getCoinById(coinId: String): CoinModel
 
-    
+    fun searchNews(searchQuery: String): Flow<PagingData<CoinModel>>
 
 
 }

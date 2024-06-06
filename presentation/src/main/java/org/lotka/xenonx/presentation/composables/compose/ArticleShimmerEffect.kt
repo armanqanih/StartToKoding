@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 
 import androidx.compose.runtime.Composable
@@ -51,38 +53,23 @@ fun Modifier.shimmerEffect(cornerRadius: CornerRadius = CornerRadius(x = 12f, y 
 fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
+        , horizontalArrangement = Arrangement.SpaceAround
     ) {
         Box(
             modifier = Modifier
-                .size(Dimens.ArticleCardSize)
-                .clip(MaterialTheme.shapes.medium)
+                .width(200.dp)
+                .height(20.dp)
+                .padding(horizontal = 8.dp)
                 .shimmerEffect()
         )
-        Column(
-            verticalArrangement = Arrangement.SpaceAround,
+        Spacer(modifier = Modifier.weight(1f))
+        Box(
             modifier = Modifier
-                .padding(horizontal = Dimens.ExtraSmallPadding)
-                .height(Dimens.ArticleCardSize)
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(30.dp)
-                    .padding(horizontal = MediumPadding1)
-                    .shimmerEffect()
-            )
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth(0.5f)
-                        .padding(horizontal = MediumPadding1)
-                        .height(15.dp)
-                        .shimmerEffect()
-                )
-
-            }
+                .width(100.dp)
+                .height(20.dp)
+                .padding(horizontal = 8.dp)
+                .shimmerEffect()
+        )
         }
     }
-}
+

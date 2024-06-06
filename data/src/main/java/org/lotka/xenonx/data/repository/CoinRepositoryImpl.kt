@@ -23,4 +23,14 @@ class CoinRepositoryImpl(
     override fun getCoinById(coinId: String): CoinModel {
         TODO("Not yet implemented")
     }
+
+    override fun searchNews(searchQuery: String): Flow<PagingData<CoinModel>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = { SearchForCoinRemotePagingSources(
+                coinApi = coinApi,
+                searchQuery = searchQuery) }
+        ).flow
+    }
+
 }
