@@ -5,8 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.lotka.xenonx.data.api.CoinPaprikaApi
-import org.lotka.xenonx.data.repository.CoinRepositoryImpl
-import org.lotka.xenonx.domain.repository.CoinRepository
 import org.lotka.xenonx.domain.util.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

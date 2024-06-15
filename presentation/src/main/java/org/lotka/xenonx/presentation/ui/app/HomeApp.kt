@@ -20,8 +20,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.pager.ExperimentalPagerApi
 import org.lotka.xenonx.presentation.ui.navigation.HomeScreensNavigation
 import org.lotka.xenonx.presentation.ui.navigation.NavigatorScreen
-import org.lotka.xenonx.presentation.ui.screens.plp.PlpScreen
-import org.lotka.xenonx.presentation.ui.screens.plp.PlpViewModel
+
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -34,7 +33,7 @@ fun HomeApp(
     isDarkTheme: Boolean,
     onToggleTheme: () -> Unit,
     keyboardController: SoftwareKeyboardController,
-    plpViewModel: PlpViewModel
+
     ) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()

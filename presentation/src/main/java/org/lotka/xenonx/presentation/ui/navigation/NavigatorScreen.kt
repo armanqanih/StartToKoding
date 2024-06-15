@@ -24,10 +24,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 
 import org.lotka.xenonx.domain.model.CoinModel
 import org.lotka.xenonx.presentation.R
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.HomeScreen
-import org.lotka.xenonx.presentation.ui.screens.HomeScreen.HomeViewModel
-import org.lotka.xenonx.presentation.ui.screens.search.SearchScreen
-import org.lotka.xenonx.presentation.ui.screens.search.SearchViewModel
+
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -91,23 +88,23 @@ fun NavigatorScreen(
                 modifier = Modifier.padding(bottom = bottomPadding)
             ) {
                 composable(route = Route.HomeRoutScreen.route) { backStackEntry ->
-                    val viewModel: HomeViewModel = hiltViewModel()
-                    val coins = viewModel.coins.collectAsLazyPagingItems()
-                    HomeScreen(
-                        coins = coins,
-                        navigateToSearch = { navigateToTab(navController, Route.SearchRouteScreen.route) },
-                        navigateToDetails = { article -> navigateToDetails(navController, article) }
-                    )
+//                    val viewModel: HomeViewModel = hiltViewModel()
+//                    val coins = viewModel.coins.collectAsLazyPagingItems()
+//                    HomeScreen(
+//                        coins = coins,
+//                        navigateToSearch = { navigateToTab(navController, Route.SearchRouteScreen.route) },
+//                        navigateToDetails = { article -> navigateToDetails(navController, article) }
+//                    )
                 }
                 composable(route = Route.SearchRouteScreen.route) {
-                    val viewModel: SearchViewModel = hiltViewModel()
-                    val state = viewModel.state.value
-                    OnBackClickStateSaver(navController = navController)
-                    SearchScreen(
-                        state = state,
-                        event = viewModel::onEvent,
-                        navigateToDetails = { coin -> navigateToDetails(navController, coin) }
-                    )
+//                    val viewModel: SearchViewModel = hiltViewModel()
+//                    val state = viewModel.state.value
+//                    OnBackClickStateSaver(navController = navController)
+//                    SearchScreen(
+//                        state = state,
+//                        event = viewModel::onEvent,
+//                        navigateToDetails = { coin -> navigateToDetails(navController, coin) }
+//                    )
                 }
 //                composable(route = Route.DetailRoutScreen.route) {
 //                    val viewModel: DetailViewModel = hiltViewModel()

@@ -10,6 +10,5 @@ data class ErrorMessage2(
     
     var error: ErrorDetail? = ErrorDetail("", "", ""),
     
-    var traceId: String? = "",
-    val status: HttpErrors,
+
 )

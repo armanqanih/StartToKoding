@@ -8,7 +8,7 @@ dependencyResolutionManagement {
 
     }
 }
-rootProject.name = "CoinPaprikaApp"
+rootProject.name = "ChatAppArm"
 include ':app'
 include ':benchmark'
 include ':presentation'

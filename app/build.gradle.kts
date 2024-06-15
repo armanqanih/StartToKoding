@@ -37,11 +37,7 @@ android {
     buildTypes {
         namespace = "org.lotka.xenonx"
         getByName("debug")  {
-            buildConfigField("String", "BASE_URL", "\"http://185.208.79.114:8001/\"")
-            buildConfigField("String", "UPLOAD_IMAGE_URL", "\"https://upload.kilid.com\"")
-            buildConfigField("String", "ADVERTISEMENT_SALE_URL", "\"https://kilid.com/buy/detail/\"")
-            buildConfigField("String", "ADVERTISEMENT_RENT_URL", "\"https://kilid.com/rent/detail/\"")
-            buildConfigField("String", "CDN", "\"https://cdn.kilid.com/\"")
+
             //turn on for release
             isMinifyEnabled =  false
             isShrinkResources = false
@@ -51,11 +47,7 @@ android {
 
 
         getByName("release") {
-            buildConfigField("String", "BASE_URL", "\"https://server.kilid.com/\"")
-            buildConfigField("String", "UPLOAD_IMAGE_URL", "\"https://upload.kilid.com\"")
-            buildConfigField("String", "ADVERTISEMENT_SALE_URL", "\"https://kilid.com/buy/detail/\"")
-            buildConfigField("String", "ADVERTISEMENT_RENT_URL", "\"https://kilid.com/rent/detail/\"")
-            buildConfigField("String", "CDN", "\"https://cdn.kilid.com/\"")
+
             //turn on for release
             isMinifyEnabled =  true
             isShrinkResources = true
