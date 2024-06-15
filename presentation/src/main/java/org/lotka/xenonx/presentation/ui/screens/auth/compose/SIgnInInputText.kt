@@ -1,0 +1,90 @@
+package org.lotka.xenonx.presentation.ui.screens.auth.compose
+
+import androidx.compose.foundation.layout.fillMaxWidth
+
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
+
+
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+
+import androidx.compose.ui.Modifier
+
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LoginEmailCustomOutlinedTextField(
+    entry: String,
+    hint: String,
+    icon: ImageVector,
+    onChange: (String) -> Unit = {}
+) {
+    var text by remember { mutableStateOf("") }
+    text = entry
+
+    OutlinedTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = text,
+        label = { Text(text = hint) },
+        onValueChange = {
+            text = it
+            onChange(it)
+        },
+        leadingIcon = {
+            Icon(
+                imageVector = icon,
+                contentDescription = null
+            )
+        }
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LoginPasswordCustomOutlinedTextField(
+    entry: String,
+    hint: String,
+    icon: ImageVector,
+    onChange: (String) -> Unit = {}
+) {
+    var text by remember { mutableStateOf("") }
+    text = entry
+    var passwordVisibility by remember { mutableStateOf(false) }
+
+    OutlinedTextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = text,
+        label = { Text(hint) },
+        onValueChange = {
+            text = it
+            onChange(it)
+        },
+        leadingIcon = {
+            Icon(
+                imageVector = icon,
+                contentDescription = null
+            )
+        },
+        visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        trailingIcon = {
+            val image = if (passwordVisibility)
+                Icons.Filled.CheckCircle
+            else Icons.Filled.Close
+
+            IconButton(onClick = {
+                passwordVisibility = !passwordVisibility
+            }) {
+                Icon(imageVector = image, "")
+            }
+        }
+    )
+}

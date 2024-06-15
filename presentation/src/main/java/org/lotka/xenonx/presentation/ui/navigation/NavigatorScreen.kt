@@ -20,9 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
 
-import org.lotka.xenonx.domain.model.CoinModel
 import org.lotka.xenonx.presentation.R
 
 
@@ -148,8 +146,8 @@ private fun navigateToTab(navController: NavController, route: String) {
     }
 }
 
-private fun navigateToDetails(navController: NavController, coin: CoinModel) {
-    navController.currentBackStackEntry?.savedStateHandle?.set("coin", coin)
-    navController.navigate(Route.DetailRoutScreen.route)
-}
+//private fun navigateToDetails(navController: NavController, coin: CoinModel) {
+//    navController.currentBackStackEntry?.savedStateHandle?.set("coin", coin)
+//    navController.navigate(Route.DetailRoutScreen.route)
+//}
 
