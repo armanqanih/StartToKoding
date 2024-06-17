@@ -3,7 +3,8 @@ package org.lotka.xenonx.presentation.util
 import android.content.Context
 import android.net.Uri
 import androidx.core.content.FileProvider
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
+
 
 import java.io.File
 

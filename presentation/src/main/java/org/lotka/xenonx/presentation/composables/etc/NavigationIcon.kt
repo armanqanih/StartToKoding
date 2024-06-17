@@ -7,7 +7,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
+
 
 import org.lotka.xenonx.presentation.theme.White
 

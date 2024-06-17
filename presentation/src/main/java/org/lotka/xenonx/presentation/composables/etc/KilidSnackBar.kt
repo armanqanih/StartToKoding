@@ -25,9 +25,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.ainarm.chat.presentation.R
 
 import org.lotka.xenonx.dataold.enums.SnackBarType
-import org.lotka.xenonx.presentation.R
+
 import org.lotka.xenonx.presentation.theme.DarkGreen
 import org.lotka.xenonx.presentation.theme.DarkRed
 import org.lotka.xenonx.presentation.theme.DarkYellow

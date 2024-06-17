@@ -29,7 +29,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
+
 import org.lotka.xenonx.presentation.theme.KilidTypography
 import org.lotka.xenonx.presentation.theme.White
 import org.lotka.xenonx.presentation.theme.kilidDarkBorders

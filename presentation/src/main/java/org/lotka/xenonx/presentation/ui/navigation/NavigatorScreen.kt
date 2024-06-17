@@ -3,10 +3,13 @@ package org.lotka.xenonx.presentation.ui.navigation
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,96 +17,83 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-
-import org.lotka.xenonx.presentation.R
-
+import androidx.navigation.navArgument
+import org.lotka.xenonx.presentation.ui.screens.auth.sign_in.SignInScreen
+import org.lotka.xenonx.presentation.ui.screens.auth.sign_up.SignUpScreen
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 
 @Composable
 fun NavigatorScreen(
-
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    snackbarHostState: androidx.compose.material.SnackbarHostState,
+    keyboardController: SoftwareKeyboardController
 ) {
     val navController = rememberNavController()
-
-    val bottomNavigationItems = remember {
-        listOf(
-            BottomNavigationItem(icon = R.drawable.ic_home, text = "Home"),
-            BottomNavigationItem(icon = R.drawable.ic_search, text = "Search"),
-            BottomNavigationItem(icon = R.drawable.ic_bookmark, text = "Bookmark")
-        )
-    }
-
-    val backStackState = navController.currentBackStackEntryAsState().value
-    var selectedItem by rememberSaveable { mutableStateOf(0) }
-    selectedItem = when (backStackState?.destination?.route) {
-        Route.HomeRoutScreen.route -> 0
-        Route.SearchRouteScreen.route -> 1
-        Route.BookMarkRoutScreen.route -> 2
-        else -> 0
-    }
-
-    // Hide the bottom navigation when the user is in the details screen
-    val isBottomBarVisible = remember(key1 = backStackState) {
-        backStackState?.destination?.route == Route.HomeRoutScreen.route ||
-                backStackState?.destination?.route == Route.SearchRouteScreen.route ||
-                backStackState?.destination?.route == Route.BookMarkRoutScreen.route
-    }
-
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
     val scaffoldState = rememberScaffoldState()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            if (isBottomBarVisible) {
-                NewsBottomNavigation(
-                    items = bottomNavigationItems,
-                    selectedItem = selectedItem,
-                    onItemClick = { index ->
-                        when (index) {
-                            0 -> navigateToTab(navController, Route.HomeRoutScreen.route)
-                            1 -> navigateToTab(navController, Route.SearchRouteScreen.route)
-                            2 -> navigateToTab(navController, Route.BookMarkRoutScreen.route)
-                        }
-                    }
-                )
-            }
+
         },
         content = { paddingValues ->
             val bottomPadding = paddingValues.calculateBottomPadding()
             NavHost(
                 navController = navController,
-                startDestination = Route.HomeRoutScreen.route,
+                startDestination = BottomNavItem.SignIn.fullRoute,
                 modifier = Modifier.padding(bottom = bottomPadding)
             ) {
-                composable(route = Route.HomeRoutScreen.route) { backStackEntry ->
-//                    val viewModel: HomeViewModel = hiltViewModel()
-//                    val coins = viewModel.coins.collectAsLazyPagingItems()
-//                    HomeScreen(
-//                        coins = coins,
-//                        navigateToSearch = { navigateToTab(navController, Route.SearchRouteScreen.route) },
-//                        navigateToDetails = { article -> navigateToDetails(navController, article) }
-//                    )
+                composable(
+                    BottomNavItem.SignIn.fullRoute,
+                    arguments = listOf(
+                        navArgument("emailFromSignUp") {
+                            type = NavType.StringType
+                            defaultValue = ""
+                        }
+                    ),
+                ) {
+                    val emailFromSignUp = remember {
+                        it.arguments?.getString("emailFromSignUp")
+                    }
+                    SignInScreen(
+                        emailFromSignUp = emailFromSignUp ?: "",
+                        navController = navController,
+                        snackbarHostState = snackbarHostState,
+                        keyboardController = keyboardController
+                    )
                 }
-                composable(route = Route.SearchRouteScreen.route) {
-//                    val viewModel: SearchViewModel = hiltViewModel()
-//                    val state = viewModel.state.value
-//                    OnBackClickStateSaver(navController = navController)
-//                    SearchScreen(
-//                        state = state,
-//                        event = viewModel::onEvent,
-//                        navigateToDetails = { coin -> navigateToDetails(navController, coin) }
-//                    )
+                composable(
+                    BottomNavItem.SignUp.fullRoute,
+                    arguments = listOf(
+                        navArgument("emailFromSignIn") {
+                            type = NavType.StringType
+                            defaultValue = ""
+                        }
+                    ),
+                ) {
+                    val emailFromSignIn = remember {
+                        it.arguments?.getString("emailFromSignIn")
+                    }
+                    SignUpScreen(
+                        emailFromSignIn = emailFromSignIn ?: "",
+                        navController = navController,
+                        snackbarHostState = snackbarHostState,
+                        keyboardController = keyboardController
+                    )
                 }
+
 //                composable(route = Route.DetailRoutScreen.route) {
 //                    val viewModel: DetailViewModel = hiltViewModel()
 //                    navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")?.let { article ->

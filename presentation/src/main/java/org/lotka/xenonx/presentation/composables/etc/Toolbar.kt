@@ -18,7 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
+
 import org.lotka.xenonx.presentation.theme.PrimaryLight
 import org.lotka.xenonx.presentation.theme.White
 import org.lotka.xenonx.presentation.theme.kilidPrimaryColor

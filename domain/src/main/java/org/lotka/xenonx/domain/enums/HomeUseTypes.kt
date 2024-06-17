@@ -1,6 +1,6 @@
 package org.lotka.xenonx.domain.enums
 
-import org.lotka.xenonx.domain.R
+import org.ainarm.chat.domain.R
 
 
 /*

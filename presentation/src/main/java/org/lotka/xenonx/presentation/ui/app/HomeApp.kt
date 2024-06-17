@@ -60,7 +60,11 @@ fun HomeApp(
                     route = HomeScreensNavigation.NavigatorRoutScreen.route,
                 ) {
 
-                    NavigatorScreen()
+                    NavigatorScreen(
+                        navController = navController,
+                        snackbarHostState = scaffoldState.snackbarHostState,
+                        keyboardController = keyboardController
+                    )
 
 //                  PlpScreen(
 //                      navController = navController,

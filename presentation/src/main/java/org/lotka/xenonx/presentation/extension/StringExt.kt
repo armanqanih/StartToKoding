@@ -6,7 +6,7 @@ import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
 
 
 fun String.toRequestBody() = this.toRequestBody("text/plain".toMediaType())

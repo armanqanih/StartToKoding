@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "ir.pinto.market.data"
+    namespace = "org.ainarm.chat.data"
     compileSdk = 34
 
     defaultConfig {

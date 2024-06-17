@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
 
 
 @Composable

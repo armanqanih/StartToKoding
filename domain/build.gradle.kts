@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.lotka.xenonx.domain"
+    namespace = "org.ainarm.chat.domain"
     compileSdk = 34
 
     defaultConfig {

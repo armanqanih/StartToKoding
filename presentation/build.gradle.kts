@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "org.lotka.xenonx.presentation"
+    namespace = "org.ainarm.chat.presentation"
     compileSdk = 34
 
     defaultConfig {

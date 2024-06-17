@@ -9,7 +9,8 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
+
 
 @Composable
 fun LottieLoading(size: Dp) {

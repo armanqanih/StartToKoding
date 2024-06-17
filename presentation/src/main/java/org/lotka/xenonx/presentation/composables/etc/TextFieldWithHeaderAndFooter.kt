@@ -26,7 +26,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
+
 import org.lotka.xenonx.presentation.composables.etc.general.ErrorText
 import org.lotka.xenonx.presentation.theme.GrayLight
 import org.lotka.xenonx.presentation.theme.KilidTypography

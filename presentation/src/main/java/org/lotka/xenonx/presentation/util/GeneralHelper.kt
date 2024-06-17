@@ -8,7 +8,8 @@ import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.FragmentActivity
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
+
 import java.net.Inet4Address
 import java.net.NetworkInterface
 import java.net.SocketException

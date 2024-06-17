@@ -21,10 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-
-
-
-import org.lotka.xenonx.presentation.R
+import org.ainarm.chat.presentation.R
 import org.lotka.xenonx.presentation.ui.navigation.BottomNavItem
 import org.lotka.xenonx.presentation.ui.screens.auth.AuthEvent
 import org.lotka.xenonx.presentation.ui.screens.auth.AuthViewModel

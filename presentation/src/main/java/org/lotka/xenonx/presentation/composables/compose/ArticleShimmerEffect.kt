@@ -26,8 +26,9 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import org.ainarm.chat.presentation.R
 
-import org.lotka.xenonx.presentation.R
+
 import org.lotka.xenonx.presentation.util.Dimens
 import org.lotka.xenonx.presentation.util.Dimens.MediumPadding1
 

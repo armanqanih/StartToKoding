@@ -1,7 +1,8 @@
 package org.lotka.xenonx.presentation.form_validator
 
 import android.webkit.URLUtil
-import org.lotka.xenonx.domain.R
+import org.ainarm.chat.presentation.R
+
 import org.lotka.xenonx.presentation.extension.toEng
 
 /*

@@ -12,7 +12,7 @@ plugins {
 android {
     compileSdk =  34
     defaultConfig {
-        applicationId = "org.lotka.xenonx"
+        applicationId = "org.ainarm.chat"
         minSdk =  21
         targetSdk = 34
         versionCode = 164
